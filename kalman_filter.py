@@ -32,7 +32,7 @@ class KalmanFilter(object):
 
 
     def predict(self, dt):
-        # the state transition matrix
+        # the state transition matrix -> assuming acceleration is constant
         F = np.eye(3 * self.dim_z)
         np.fill_diagonal(F[:2*self.dim_z, self.dim_z:], dt)
         np.fill_diagonal(F[:self.dim_z, 2*self.dim_z:], dt ** 2 / 2)
@@ -154,9 +154,9 @@ with dai.Device(pipeline) as device:
                 dt = 1e-2
 
                 # Adjust these parameters
-                acc_std_space = 20
+                acc_std_space = 10
                 acc_std_bbox = 0.1
-                meas_std_bbox = 0.2
+                meas_std_bbox = 0.05
 
                 kalman_filters[t.id] = {'bbox': KalmanFilter(meas_std_bbox, acc_std_bbox, meas_vec_bbox, current_time),
                                         'space': KalmanFilter(meas_std_space, acc_std_space, meas_vec_space, current_time)}
@@ -165,8 +165,11 @@ with dai.Device(pipeline) as device:
                 dt = current_time - kalman_filters[t.id]['bbox'].time
                 kalman_filters[t.id]['bbox'].meas_std = meas_std_space
 
-                if t.status.name != 'TRACKED' or z_space == 0:
+                if t.status.name != 'TRACKED':
                     meas_vec_bbox = None
+                    meas_vec_space = None
+
+                if z_space == 0:
                     meas_vec_space = None
 
 
