@@ -120,9 +120,8 @@ with dai.Device(pipeline) as device:
     q_rgb  = device.getOutputQueue(name='rgb', maxSize=4, blocking=False)
     q_tracklets = device.getOutputQueue(name='tracklets', maxSize=4, blocking=False)
 
-    previous_state = {}
     kalman_filters = {}
-    frames = []
+    # frames = []
 
     while(True):
         frame = q_rgb.get().getCvFrame()
@@ -210,10 +209,10 @@ with dai.Device(pipeline) as device:
             cv2.putText(frame, f'Z: {int(vec_space[2])} mm', (x1 + 10, y1 + 140), cv2.FONT_HERSHEY_TRIPLEX, 0.5, (0, 0, 255))
 
         cv2.imshow('tracker', frame)
-        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frames.append(rgb_frame)
+        # rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # frames.append(rgb_frame)
 
         if cv2.waitKey(1) == ord('q'):
             break
 
-imageio.mimsave('demo.gif', frames, fps=30)
+# imageio.mimsave('demo.gif', frames, fps=30)
