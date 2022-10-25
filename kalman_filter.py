@@ -162,7 +162,7 @@ with dai.Device(pipeline) as device:
 
             else:
                 dt = current_time - kalman_filters[t.id]['bbox'].time
-                kalman_filters[t.id]['bbox'].meas_std = meas_std_space
+                kalman_filters[t.id]['space'].meas_std = meas_std_space
 
                 if t.status.name != 'TRACKED':
                     meas_vec_bbox = None
