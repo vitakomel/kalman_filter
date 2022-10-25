@@ -198,7 +198,7 @@ with dai.Device(pipeline) as device:
             cv2.putText(frame, f'ID: {[t.id]}', (x1 + 10, y1 + 35), cv2.FONT_HERSHEY_TRIPLEX, 0.5, 255)
             cv2.putText(frame, t.status.name, (x1 + 10, y1 + 50), cv2.FONT_HERSHEY_TRIPLEX, 0.5, 255)
             cv2.rectangle(frame, (x1, y1), (x2, y2), (255, 0, 0))
-            cv2.rectangle(frame, (x1_filter, y1_filter), (x2_filter, y2_filter), (0, 0, 255), 3)
+            cv2.rectangle(frame, (x1_filter, y1_filter), (x2_filter, y2_filter), (0, 0, 255), 2)
 
             cv2.putText(frame, f'X: {int(x_space)} mm', (x1 + 10, y1 + 65), cv2.FONT_HERSHEY_TRIPLEX, 0.5, 255)
             cv2.putText(frame, f'Y: {int(y_space)} mm', (x1 + 10, y1 + 80), cv2.FONT_HERSHEY_TRIPLEX, 0.5, 255)
