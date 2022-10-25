@@ -3,4 +3,4 @@ This example performs filtering of 2D bounding boxes and spatial coordinates of 
 
 # Demo
 
-![ezgif com-gif-maker(2)](https://user-images.githubusercontent.com/69462196/197789387-b9a54043-d657-4d4a-8951-eb7739ab1e85.gif)
+![video](https://user-images.githubusercontent.com/69462196/197813200-236e950e-3dda-403f-b5cd-8d11f0e86124.gif)
